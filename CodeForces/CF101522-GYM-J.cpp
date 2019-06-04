@@ -70,7 +70,7 @@ int main ()
 	while (x || y || z)
 	{
 		if (last != 0 && x && d[x-1][y][z][0] >= k)
-    {
+  		{
 			x--;
 			last = 0;
 			s += 'B';
