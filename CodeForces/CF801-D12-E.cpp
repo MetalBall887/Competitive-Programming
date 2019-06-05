@@ -4,8 +4,8 @@
 #include <set>
 #include <map>
 #include <algorithm>
-//sort all possible prefixes by their gcd with m then find the longest subsequence
-//dynamic programming. After that construct the original sequence with linear equations.
+//sort all possible prefix products by their gcd with m then find the longest subsequence
+//with dynamic programming. After that construct the original sequence with linear equations.
 #include <bitset>
 #include <queue>
 #include <math.h>
