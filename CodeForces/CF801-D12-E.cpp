@@ -4,23 +4,23 @@
 #include <set>
 #include <map>
 #include <algorithm>
-//sort all possible prefix products by their gcd with m then find the longest subsequence
-//with dynamic programming. After that construct the original sequence with linear equations.
+//sort all possible prefixes by their gcd with m then find the longest subsequence
+//dynamic programming. After that construct the original sequence with linear equations.
 #include <bitset>
 #include <queue>
 #include <math.h>
 #include <stack>
 #include <vector>
 #include <string.h>
-
+ 
 typedef long long ll;
  
 const ll MOD = 1e9 + 7, INF = 1e18 + 1;
  
 using namespace std;
 
-ll n, m, banned[200000], p[200000], len[200000], p_m;
-ll last[200000];
+ll n, m, banned[200001], p[200001], len[200001], p_m;
+ll last[200001], u[200001], ph[200001];
 
 vector <ll> fact[200010];
 
@@ -32,15 +32,20 @@ ll gcd (ll a, ll b)
 
 ll phi (ll n) 
 {
+	if (u[n]) return ph[n];
+	u[n] = 1;
+	ll d = n;
 	ll result = n;
 	
-	for (ll i = 2; i * i <= n; i++)
-		if (n % i == 0) 
+	for (ll i = 1; i < fact[d].size () && fact[d][i] * fact[d][i] <= n; i++)
+		if (n % fact[d][i] == 0)
 		{
-			while (n % i == 0) n /= i;
-			result -= result / i;
+			while (n % fact[d][i] == 0) n /= fact[d][i];
+			result -= result / fact[d][i];
 		}
 	if (n > 1) result -= result / n;
+
+	ph[d] = result;
 
 	return result;
 }
@@ -75,9 +80,7 @@ int main ()
 {
 	cin >> n >> m;
 
-	p_m = phi (m) - 1;
-
-	for (ll i = 0; i < n; i++)
+	for (ll i = 1; i <= n; i++)
 	{
 		ll x;
 
