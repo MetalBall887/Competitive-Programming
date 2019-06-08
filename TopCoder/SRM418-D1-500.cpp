@@ -98,7 +98,7 @@ public:
 						int odd_price = 0;
 
 						for (int j = 0; j < v.size (); j++)
-							if ((j + k) % 2) odd_price += price[v[(j + k) % v.size ()]];
+							if (j % 2) odd_price += price[v[(j + k) % v.size ()]];
 
 						mx = max (mx, odd_price);
 					}
