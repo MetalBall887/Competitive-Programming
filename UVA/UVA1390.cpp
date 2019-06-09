@@ -47,11 +47,11 @@ double dfs (vector <double> a)
 
 	//stat - the number of edges don't that change the state, prob - the probability
 	//that our state will change to the current new one
-  //let x = current state, to = new state,
-  //d[x] = sum of ((d[to] + 1) * prob) for each to + stat * (d[x] + 1)
-  //d[x] = sum (d[to] * prob) + d[x] * stat + 1 
-  //(since sum of prob for every to + stat = 1). 
-  //d[x] = (sum (d[to] * prob) + 1) / (1 - stat)
+  	//let x = current state, to = new state,
+	//d[x] = sum of ((d[to] + 1) * prob) for each to + stat * (d[x] + 1)
+	//d[x] = sum (d[to] * prob) + d[x] * stat + 1 
+	//(since sum of prob for every to + stat = 1)
+	//d[x] = (sum (d[to] * prob) + 1) / (1 - stat)
 	
 	double stat = 0;
 
