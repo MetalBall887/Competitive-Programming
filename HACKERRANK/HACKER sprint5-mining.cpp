@@ -6,13 +6,13 @@
 #include <algorithm>
 #include <bitset>
 //d_help[i][j] = the minimal cost of delivering gold for mines in a segment [i..j] if only one del. point 
-//is used. The best point to place a delivering point in is where (the sum of mines' weights on the right) - (sum on the left)
-//is minimum >= 0. From this greedy idea it can be seen that a "good" del.point moves to the right as j increases, so
-//we can ise a two-pointer method to find this point for each j for a fixed i complexity: O(N^2).
-//After this a dp optimisation trick named D&C optimisation is used, because opt[i][j] <= opt[i][j + 1]
-//Proof: if there is a mine that has two del.points on both sides and belongs to the left one, then it's
+//is used. The best point to place a delivering point in is where ((the sum of mines' weights on the right) - (sum on the left))
+//is minimal and >= 0. From this greedy idea it can be seen that a "good" del.point moves to the right as j increases, so
+//we can use a two-pointer method to find this point for each j for a fixed i complexity: O(N^2).
+//After this a dp optimisation trick named D&C dp optimisation is used, because opt[i][j] <= opt[i][j + 1]
+//Proof: if there is a mine that has two del.points on both sides and belongs to the left segment, then it's
 //closer to the left point and after incrementing j the right point can only move to the right which makes it
-//only further from our mine while the distance to the left delivering point doesn't change
+//only further from our mine while the distance to the left delivering point doesn't change. Complexity: O(NKlogN)
 #include <queue>
 #include <math.h>
 #include <stack>
