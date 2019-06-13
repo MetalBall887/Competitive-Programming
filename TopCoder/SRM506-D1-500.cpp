@@ -6,9 +6,9 @@
 #include <algorithm>
 #include <bitset>
 #include <queue>
-//The main idea is that we will use at most one (one or zero) car each path from one key district to another.
-//So we have a model, where for each path between two key districts we can use 1 car or not se cars ar all, 
-//we can use a car only once and each path should be used. We can build a graph according to this description
+//The main idea is that we will use at most one (one or zero) car on each path from one key district to another.
+//So we have a model, where for each path between two key districts we can use 1 car or not use cars ar all, 
+//we can use a car only once and each path should be used. We can build a bipartite graph according to this description
 //and find a minimum cost flow. We can find a shortest path between key districts using a car by 2d dp.
 #include <math.h>
 #include <stack>
@@ -43,7 +43,7 @@ class SlimeXGrandSlimeAuto
 
 		for (int i = 0; i < )
 
-		if (!u[T]) return -69;
+		if (!u[T]) return -1e9;
 
 		int x = T, cap = 1e9, cost = 0;
 
@@ -70,7 +70,7 @@ class SlimeXGrandSlimeAuto
 	{
 		int ans = 0, a;
 
-		while ((a = find_path ()) != -69)
+		while ((a = find_path ()) != -1e9)
 			ans += a;
 
 		return ans;
