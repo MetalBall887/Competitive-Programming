@@ -43,7 +43,7 @@ class SlimeXGrandSlimeAuto
 
 		for (int i = 0; i < )
 
-		if (!u[T]) return -1e9;
+		if (!u[T]) return -69;
 
 		int x = T, cap = 1e9, cost = 0;
 
@@ -70,7 +70,7 @@ class SlimeXGrandSlimeAuto
 	{
 		int ans = 0, a;
 
-		while ((a = find_path ()) != -1e9)
+		while ((a = find_path ()) != -69)
 			ans += a;
 
 		return ans;
