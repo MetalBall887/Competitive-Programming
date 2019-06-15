@@ -4,10 +4,10 @@
 #include <set>
 #include <map>
 #include <algorithm>
-//Slow solution using heuristics. Will try to replace it with the better one.
-//The idea is, after creating a graph (i, j) -> it is possible to place a[i] and a[j] near each other in a subsequence,
-//We can push exactly 4 flows with minimal overall cost to get the answer. Correct solution will use Dijkstra with potentials
-//But mine uses some heuristics with SPFA, so the solution is O(n^2).
+//The idea is, after creating a graph where (i, j) edge exists when a[i] and a[j] can be near each other in a subsequence
+//We have to find four vertex-disjoint paths with maximal overall sum. This is min-cost-max-flow problem. But the 
+//thing is, usual MCMF with Bellman-Ford works in O(N^3), which is TLE so we have to use a trick called Dijkstra with
+//potentials, which will reduce the complexity to O(Mlogn), O(N^2logn) in the worst case.
 #include <bitset>
 #include <queue>
 #include <math.h>
@@ -21,53 +21,54 @@ const ll MOD = 1e9 + 7, INF = 1e18 + 1;
  
 using namespace std;
 
-struct edge
-{
-	int u, v;
-};
-
 vector <int> g[7000];
 
-int n, S, T, a[1000000];
+int n, S, T, a[1000000], dp[6000], last_m[7], last[100001];
 
-short c[6010][6010], f[6010][6010];
+int c[6010][6010], f[6010][6010];
+
+int c_p (int u, int v)
+{
+	return c[u][v] - dp[v] + dp[u];
+}
 
 int find_path ()
 {
-	vector <int> u (T + 1), p (T + 1), d (T + 1, -1e9), inq (T + 1);
+	vector <int> u (T + 1), p (T + 1), d (T + 1, 1e9);
 	d[S] = 0;
 	u[S] = 1;
-	inq[S] = 1;
 
-	queue <int> q;
+	priority_queue < pair <int, int> > q;
 
-	q.push (S);
+	q.push ({0, S});
 
 	while (!q.empty ())
 	{
-		int x = q.front ();
+		auto fr = q.top ();
 		q.pop ();
+		if (fr.first != -d[fr.second]) continue;
+
+		int x = fr.second;
+
 		u[x] = 1;
-		inq[x] = 0;
 
 		for (int to : g[x])
 		{
-			if (f[x][to] && d[to] < d[x] + c[x][to])
+			if (f[x][to] && d[to] > d[x] + c_p (x, to))
 			{
-				d[to] = d[x] + c[x][to];
+				d[to] = d[x] + c_p (x, to);
 				p[to] = x;
-				if (!inq[to])
-				{
-					q.push (to);
-					inq[to] = 1;
-				}
+				q.push (make_pair (-d[to], to));
 			}
 		}
 	}
 
+	for (int i = 0; i <= T; i++)
+		dp[i] += d[i];
+
 	if (!u[T]) return -1e9;
 
-	short x = T, cap = 100, delta = 0;
+	int x = T, cap = 100, delta = 0;
 
 	while (x != S)
 	{
@@ -88,7 +89,6 @@ int find_path ()
 	}
 
 	return delta;
-
 }
 
 int flow ()
@@ -96,9 +96,7 @@ int flow ()
 	int s = 0, a;
 
 	while ((a = find_path ()) != -1e9)
-	{
-		s += a;
-	}
+		s -= a;
 
 	return s;
 }
@@ -118,28 +116,37 @@ int main ()
 {
 	cin >> n;
 
+	vector <int> d (n + 1);
+
+	int mn = 1e9;
+
 	for (int i = 1; i <= n; i++)
 		scanf ("%d", &a[i]);
 
 	for (int i = 1; i <= n; i++)
 	{
-		add (2 * i - 1, 2 * i, 1);
-		for (int j = i + 1; j <= min (n, i + 200); j++)
+		add (2 * i - 1, 2 * i, -1);
+		for (int j = i + 1; j <= n; j++)
 			if (abs (a[i] - a[j]) == 1 || a[i] % 7 == a[j] % 7)
 				add (2 * i, 2 * j - 1, 0);
 	}
 
 	for (int i = 1; i <= n; i++)
 	{
-		add (2 * n + 1, 2 * i - 1, 0);
-		add (2 * i, 2 * n + 2, 0);
+		add (0, 2 * i - 1, 0);
+		add (2 * i, 2 * n + 1, 0);
 	}
 
-	add (0, 2 * n + 1, 0);
-	f[0][2 * n + 1] = 4;
+	add (2 * n + 1, 2 * n + 2, 0);
+	f[2 * n + 1][2 * n + 2] = 4;
 
 	S = 0;
 	T = 2 * n + 2;
+
+	for (int i = 0; i <= T; i++)
+		for (int j = 0; j < i; j++)
+			if (f[j][i] && dp[j] + c[j][i] < dp[i])
+				dp[i] = dp[j] + c[j][i];
 
 	cout << flow ();
 }
