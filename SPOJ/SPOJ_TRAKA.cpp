@@ -3,6 +3,15 @@
 #include <string>
 #include <set>
 #include <map>
+//First, let's divide time spent into two groups. In first group Mirko works, in second Mirko waits. Since 
+//it's easier to calculate the first part, let's concentrate on the second one. let a_i be the time when 
+//the car with f = 1 moves out of the i-th worker's place if it moves out of first one's in time 0. b_i will be the
+//same: the time when the i-th coworker gets the car with f = 1. So when Mirko gets the j-th car, if there is a such i
+//a_i * f_j-1 - b_i * f_j > 0, Mirko will have to wait this amount of time. So out of i he has to take the maximal
+//c = a_i * f_j-1 - b_i * f_j and wait this time. but since on step j f_j is constant for each i, we can divide all such
+//equations on f_j and get maximal c/f_j = a_i * f_j-1/f_j - b_i, and this i will be maximum in our original set of lines too.
+//so we can for each i contain a line of type g_i(x) = a_i * x + b_i and for each car to find waiting time we have to find
+//max i g_i(f_j/f_j-1) which is possible with Convex Hull Trick.
 #include <algorithm>
 #include <bitset>
 #include <queue>
