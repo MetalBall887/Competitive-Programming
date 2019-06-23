@@ -5,7 +5,8 @@
 //We can divide the problems to 2 parts: for each shop finding an optimal shop to sell all the swords and finding out how many
 //swords we have to sell. For the first one we have to find minimum (j - i)*di + rj for j >= i =
 //= (min j * di + rj) - i * di for j >= i. Then it's a CHT problem, where j is given in decreasing order if we go from the end. 
-//Then we have a problem of finding the number of swords. We have a ci = min (j-i)*di + rj for j >= i and we want to find such 
+//Then we have a problem of finding the number of swords. We have a ci = qi - (min (j-i)*di + rj for j >= i) 
+//and we want to find such 
 //x >= 0 f(x) = ci*x - (ai*x + bi*x*(x+1)/2) is maximal. Then f'(x) = ci - ai - bi/2 - bi*x, so we can easily find extremum.
 //Also this point is a peak of a parabola, so any other point will be lower (even 0). So x is the number of swords to buy.
 //For each shop compute those two values and summarize the profits.
