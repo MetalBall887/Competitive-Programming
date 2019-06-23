@@ -5,6 +5,12 @@
 #include <map>
 #include <algorithm>
 #include <bitset>
+//We can keep the information about one cyclist with two variables: k(current speed) and b. Let's define b. When we add a new 
+//velocity to a cyclist in time t, we know that before t his ride distance was f_old(t) and for each x >= t it will be
+//f_new(x) = v*(x-t)+f_old(t). So k = v, b = f_old(t) - v*t. Now to find a maximal value out of all lines, we have to apply 
+//CHT. But the problem is, our lines don't have to be added with increasing slopes, so we have to handle it dynamically.
+//We can do CHT in a set, ordered by k, add one in the middle, if belongs to the hull, then delete all segments from left and
+//right that are placed below our new line. Define segment points after this.
 #include <queue>
 #include <math.h>
 #include <stack>
