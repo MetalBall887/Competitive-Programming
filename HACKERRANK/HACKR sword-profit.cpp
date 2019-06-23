@@ -8,7 +8,8 @@
 //Then we have a problem of finding the number of swords. We have a ci = qi - (min (j-i)*di + rj for j >= i) 
 //and we want to find such 
 //x >= 0 f(x) = ci*x - (ai*x + bi*x*(x+1)/2) is maximal. Then f'(x) = ci - ai - bi/2 - bi*x, so we can easily find extremum.
-//Also this point is a peak of a parabola, so any other point will be lower (even 0). So x is the number of swords to buy.
+//Also this point is a peak of a parabola, so any other point will be lower (even 0). When the peak is < 0, take the closest 
+//to it (0). So x is the number of swords to buy.
 //For each shop compute those two values and summarize the profits.
 #include <map>
 #include <algorithm>
