@@ -31,65 +31,62 @@ using namespace std;
 struct line
 {
 	ll k, b;
-
+ 
 	ll eval (ll x)
 	{
 		return k * x + b;
 	}
 };
-
+ 
 vector <line> row[5000], col[5000];
 ll n;
-
-double intersect (line a, line b)
-{}
-
+ 
 bool bad (line a, line b, line c)
 {
 	return (a.b - c.b) * (c.k - b.k) >= (b.b - c.b) * (c.k - a.k);
 }
-
+ 
 void add_line (vector <line> &cht, line a)
 {
 	while (cht.size () >= 2 && bad (cht[cht.size () - 2], cht.back (), a))
 		cht.pop_back ();
 	cht.push_back (a);
 }
-
+ 
 ll get_min (vector <line> &cht, ll x)
 {
-	if (cht.size () == 1 || x <= intersect (cht[0], cht[1])) return cht[0].eval (x);
-
+	if (cht.size () == 1 || x * (cht[1].k - cht[0].k) >= cht[0].b - cht[1].b) return cht[0].eval (x);
+ 
 	ll l = 0, r = cht.size () - 2;
-
+ 
 	while (l < r)
 	{
 		ll mid = (l + r + 1) / 2;
-		if (intersect (cht[mid], cht[mid + 1]) <= x) l = mid;
+		if (cht[mid].b - cht[mid + 1].b >= x * (cht[mid + 1].k - cht[mid].k)) l = mid;
 		else r = mid - 1;
 	}
-
+ 
 	return cht[l + 1].eval (x);
 }
-
+ 
 ll a[2000], b[2000], sa[2000], sb[2000], dp[2000][2000];
-
+ 
 int main ()
 {
 	cin >> n;
-
+ 
 	for (ll i = 0; i < n; i++)
 	{
 		scanf ("%lld", &a[i]);
 		sa[i] = a[i] + (i ? sa[i-1] : 0);
 	}
-
+ 
 	for (ll i = 0; i < n; i++)
 	{
 		scanf ("%lld", &b[i]);
 		sb[i] = b[i] + (i ? sb[i-1] : 0);
 	}
-
+ 
 	for (ll i = 0; i <= n; i++)
 		for (ll j = 0; j <= n; j++)
 		{
@@ -100,11 +97,11 @@ int main ()
 			{
 				add_line (col[j], {-2LL * sa[i-1], sa[i-1] * sa[i-1] - a[i-1] * b[j-1] - dp[i-1][j-1]});
 				add_line (row[i], {-2LL * sb[j-1], sb[j-1] * sb[j-1] - a[i-1] * b[j-1] - dp[i-1][j-1]});
-
+ 
 				dp[i][j] = - sa[i-1] * sa[i-1] - get_min (col[j], sa[i-1]);
 				dp[i][j] = max (dp[i][j], - sb[j-1] * sb[j-1] - get_min (row[i], sb[j-1]));
 			}
 		}
-
+ 
 	cout << dp[n][n];
-}
+} 
