@@ -12,7 +12,7 @@
 //dp[i][j] = max (max (dp[i-1][k-1] + ai*bk - (bk+1 + bk+2 +...+ bj) ^ 2, dp[k-1][j-1] + ak*bj - (ak+1 + ak+2 +...+ ai) ^ 2)
 //let sa[i] = a1 + a2 +...+ ai. Then (ak+1 + ak+2 +...+ ai) ^ 2 = (sa[i] - sa[k]) ^ 2 = sa[i] ^ 2 - 2sa[i]sa[k] + sa[k] ^ 2
 //So we can make a f_ik(x) = -2sa[k]*x + sa[k] ^ 2 - dp[i-1][k-1] - a[i-1][k-1], same for j. Then
-//dp[i][j] = max (f_ik(sa[i]), f_kj(sb[j])), so we can apply a Convex Hull Trick.
+//dp[i][j] = - sa[i] ^ 2 - min (f_ik(sa[i]), f_kj(sb[j])), so we can apply a Convex Hull Trick.
 //dp[n][n] is the answer, because if we can make a pair from An and Bn, our matching is not optimal due to the main observation.
 #include <bitset>
 #include <queue>
