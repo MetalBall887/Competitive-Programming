@@ -91,6 +91,7 @@ int main ()
 		for (ll j = 0; j <= n; j++)
 		{
 			if (!i && !j) continue;
+			
 			if (j == 0) dp[i][j] = -sa[i-1] * sa[i-1];
 			else if (i == 0) dp[i][j] = -sb[j-1] * sb[j-1];
 			else
