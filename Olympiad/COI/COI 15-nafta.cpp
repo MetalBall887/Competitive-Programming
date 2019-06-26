@@ -8,7 +8,7 @@
 //To begin with, we don't need two dimensions. For each pool we should know its leftmostc (l) and rightmost cells (r) 
 //and its capacity (sum). Let d[i][j] be the best outcome after placing i drills in pools with r <= j, C[i][j] - the outcome
 //of one drill placed in i for the same set of pools. Then d[i][j] = max C[k][j] + d[i-1][k-1] for each k, because if
-//for some pool r <= k, then: a)it's not available for drill on k -> not available for any other to the left, b)it's already
+//for some pool k <= r, then: a)it's not available for drill in k -> not available for any other to the left, b)it's already
 //drained by the drill on k. To apply D&C dp optimisation, we need to prove that if opt[i][j] is the leftmost column to 
 //optimally place a drill, opt[i][j] <= opt[i][j+1]. Then let's suppose reversed. if m1 = opt[i][j], m2 = opt[i][j+1], 
 //m1 is optimal again only when the new pool is added and (let S be its capacity) d[i-1][m1-1] + C[m1][j] + S >=
