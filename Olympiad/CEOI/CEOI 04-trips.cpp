@@ -4,7 +4,7 @@
 #include <set>
 #include <map>
 //Sort all groups and all trips in ascending order, then, assuming first i groups were processed, A is the set of trips
-//that fit (i+1)st group and is not taken yet. Take from them the one with lowest upper bound, because with processing
+//that fit (i+1)st group and are not taken yet. Take from them the one with lowest upper bound, because with processing
 //items in ascending order and adding only trips with "good" lower bound, our only oncern is upper bound, so to be 
 //optimal, we always take the worst available possibility.
 #include <algorithm>
