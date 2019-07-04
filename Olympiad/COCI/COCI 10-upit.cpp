@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string.h>
 #include <cstdlib>
-//implemented a treap with range updates
+//treap with lazy updates
 #include <vector>
 #include <string>
 #include <random>
@@ -21,14 +21,14 @@ const ll MOD = 1e9 + 7, INF = 1e18 + 1;
  
 using namespace std;
 
-int n, q;
+ll n, q;
 
 struct Node
 {
-	int x, y, sz, count, q_sum, reset, sum, node_sum;
+	ll x, y, sz, count, q_sum, reset, sum, node_sum;
 	Node * l, * r;
 
-	Node (int x, int y, int node_sum) : x (x), y (y), node_sum (node_sum)
+	Node (ll x, ll y, ll node_sum) : x (x), y (y), node_sum (node_sum)
 	{
 		q_sum = reset = count = 0;
 		sz = 1;
@@ -43,7 +43,7 @@ struct Treap
 {
 	pNode root;
 
-	int val (pNode x)
+	ll val (pNode x)
 	{
 		return (x ? x -> sz : 0);
 	}
@@ -108,7 +108,7 @@ struct Treap
 		x -> count = x -> q_sum = x -> reset = 0;
 	}
 
-	void split (pNode x, int key, pNode& l, pNode& r, int ind = 1)
+	void split (pNode x, ll key, pNode& l, pNode& r, ll ind = 1)
 	{
 		push (x);
 
@@ -152,7 +152,7 @@ struct Treap
 		pull (x);
 	}
 
-	void insert (int x, int y, int cost)
+	void insert (ll x, ll y, ll cost)
 	{
 		pNode l, r, m = new Node (x, y, cost);
 
@@ -162,7 +162,7 @@ struct Treap
 		merge (root, l, r);
 	}
 
-	void update (int type, int qx, int ql, int qr)
+	void update (ll type, ll qx, ll ql, ll qr)
 	{
 		pNode l, m, r;
 
@@ -191,7 +191,7 @@ struct Treap
 		}
 	}
 
-	int get (int ql, int qr)
+	ll get (ll ql, ll qr)
 	{
 		pNode l, m, r;
 
@@ -200,7 +200,7 @@ struct Treap
 
 		push (m);
 
-		int s = m -> sum;
+		ll s = m -> sum;
 
 		merge (l, l, m);
 		merge (root, l, r);
@@ -209,7 +209,7 @@ struct Treap
 	}
 } tr;
 
-int main ()
+ll main ()
 {
 	cin >> n >> q;
 
@@ -217,35 +217,35 @@ int main ()
 	mt19937 rng(dev ());
 	uniform_int_distribution<mt19937::result_type> dist (1, 1e9);
 
-	for (int i = 0; i < n; i++)
+	for (ll i = 0; i < n; i++)
 	{
-		int a;
+		ll a;
 
-		scanf ("%d", &a);
+		scanf ("%lld", &a);
 
 		tr.insert (i + 1, dist (rng), a);
 	}
 
-	for (int i = 0; i < q; i++)
+	for (ll i = 0; i < q; i++)
 	{
-		int type, x, l, r;
-		scanf ("%d", &type);
+		ll type, x, l, r;
+		scanf ("%lld", &type);
 
 		if (type < 3)
 		{
-			scanf ("%d%d%d", &l, &r, &x);
+			scanf ("%lld%lld%lld", &l, &r, &x);
 
 			tr.update (type, x, l, r);
 		}
 		else if (type == 3)
 		{
-			scanf ("%d%d", &l, &x);
+			scanf ("%lld%lld", &l, &x);
 			tr.insert (l, dist (rng), x);
 		}
 		else
 		{
-			scanf ("%d%d", &l, &r);
-			printf ("%d\n", tr.get (l, r));
+			scanf ("%lld%lld", &l, &r);
+			printf ("%lld\n", tr.get (l, r));
 		}
 	}
 }
