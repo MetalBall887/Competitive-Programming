@@ -209,7 +209,7 @@ struct Treap
 	}
 } tr;
 
-ll main ()
+int main ()
 {
 	cin >> n >> q;
 
