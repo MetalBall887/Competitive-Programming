@@ -3,10 +3,10 @@
 #include <iostream>
 #include <string.h>
 #include <cstdlib>
-//treap with lazy updates
 #include <vector>
 #include <string>
 #include <random>
+//keeping an implicit treap with lazy updates. treap allows to work with all queries from the statement.
 #include <bitset>
 #include <math.h>
 #include <queue>
@@ -88,7 +88,7 @@ struct Treap
 		if (x -> count)
 		{
 			x -> node_sum += x -> count * (val (x -> l) + 1);
-			x -> sum += (x -> count) * (x -> sz + 1) * (x -> sz) / 2;
+			x -> sum += (x -> count) * (x -> sz + 1) * (x -> sz) / 2LL;
 		}
 
 		if (x -> l)
@@ -108,17 +108,17 @@ struct Treap
 		x -> count = x -> q_sum = x -> reset = 0;
 	}
 
-	void split (pNode x, ll key, pNode& l, pNode& r, ll ind = 1)
+	void split (pNode x, ll key, pNode& l, pNode& r, ll old = 1)
 	{
 		push (x);
 
 		if (!x) l = r = NULL;
 		else 
 		{
-			ind += val (x -> l);
+			int ind = old + val (x -> l);
 			if (key <= ind)
 			{
-				split (x -> l, key, l, x -> l, ind - val (x -> l));
+				split (x -> l, key, l, x -> l, old);
 				r = x;
 			}
 			else
@@ -169,7 +169,7 @@ struct Treap
 		if (type == 1)
 		{
 			split (root, ql, l, r);
-			split (r, qr + 1, m, r);
+			split (r, qr - ql + 2, m, r);
 
 			reset (m);
 			m -> q_sum = qx;
@@ -181,7 +181,8 @@ struct Treap
 		else
 		{
 			split (root, ql, l, r);
-			split (r, qr + 1, m, r);
+
+			split (r, qr - ql + 2, m, r);
 
 			m -> count += qx;
 			push (m);
@@ -245,6 +246,7 @@ int main ()
 		else
 		{
 			scanf ("%lld%lld", &l, &r);
+
 			printf ("%lld\n", tr.get (l, r));
 		}
 	}
