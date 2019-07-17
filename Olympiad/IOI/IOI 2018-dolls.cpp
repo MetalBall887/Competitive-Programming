@@ -3,11 +3,11 @@
 #include <string.h>
 #include <cstdlib>
 #include <vector>
-//Form a BST out of switches, so that leaves woukd be triggers and will lead to the root again. One of the leaves (one that
+//Form a BST out of switches, so that leaves would be triggers and will lead to the root of tree. One of the leaves (one that
 //we will meet the last) will be the origin. Then enumerate the leaves by order of traverse (just simulate the process).
 //Forming full binary tree can be up to 2N switches, so we can create only N leaves and don't build the part of tree we 
-//won't require. It's better to remove the left part than the right one, because the last leave we'll visit will always be
-//the rightmost one, so to get all states 'X' we can traverse all tree and by not removing the right part of tree we can
+//won't require. It's better to remove the left part than the right one, because the last leaf we'll visit will always be
+//the rightmost one, to get all states 'X' we can traverse all tree and by not removing the right part of tree we can
 //always make sure the rightmost leaf will always indicate the end of an algorithm.
 #include <string>
 #include <bitset>
