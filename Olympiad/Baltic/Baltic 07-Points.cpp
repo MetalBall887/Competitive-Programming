@@ -2,6 +2,11 @@
 #include <iostream>
 #include <string.h>
 #include <cstdlib>
+//dp on profile. dp[i][(a, b, c)] - the number of ways to create a broken line that connects all points from column 
+//i back to column i that way, degrees of points (i, 0), (i, 1), (i, 2) would be a, b, c correspondingly. The number 
+//of non-zero statesis actually not big, because for every state there should be two points with degree 1 
+//(start and end of the broken line). So we can figure out all the states by simply drawing, for example. For the last
+//subtask matrix expo optimisation required.
 #include <vector>
 #include <string>
 #include <bitset>
