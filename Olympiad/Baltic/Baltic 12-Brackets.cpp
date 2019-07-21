@@ -2,10 +2,10 @@
 #include <iostream>
 #include <string.h>
 #include <cstdlib>
-//bracket on position l is paired with bracket on position r when r is the leftmost index > l, where [l+1;r-1] is a
-//correct bracket sequence. In correct bracket sequence each bracket is paired with some bracket. Notice that 
-//square brackets can be connectec with only square brackets, so after changing opening bracket to square closing, we
-//should change one to square opening so those two brackets will be paired. dp state is d[i][j] - the number of ways
+//bracket on position l is paired with bracket on position r of different type when r is the leftmost index > l, 
+//where [l+1;r-1] is a correct bracket sequence. In correct bracket sequence each bracket is paired with some bracket. 
+//Notice that square brackets can be connectec with only square brackets, so after changing opening bracket to square closing, 
+//we should change one to square opening so those two brackets will be paired. dp state is d[i][j] - the number of ways
 //to create a sequence out of first i brackets that way no prefix will have negative balance (no. of opening brackets
 //minus no. of closing) and the current balance is j. Transitions are rather simple. When we consider changing opening bracket
 //to square closing we have to make sure the balance of (i-1) sequence is positive, so there will be some "spare" 
