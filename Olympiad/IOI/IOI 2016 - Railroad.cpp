@@ -2,8 +2,7 @@
 #include <iostream>
 #include <string.h>
 #include <cstdlib>
-//http://www.boi2012.lv/data/day1/spoilers/brackets.pdf
-#include <vector>
+//https://ioinformatics.org/files/ioi2016solutions.pdf#include <vector>
 #include <string>
 #include <bitset>
 #include <math.h>
