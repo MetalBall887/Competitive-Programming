@@ -4,9 +4,9 @@
 #include <cstdlib>
 //Lemma: if there are more then 2 segments with odd length, there is no solution. Let Oa be the number of odd segments in a
 //and Ob the same number but in b. the number of edges in a will be (n - Oa)/2 and in b - (n - Ob)/2. We have to have at 
-//least n - 1 edges to connect the graph, so (n - Oa)/2 + (n - Ob)/2 <= n - 1 => Oa + Ob <= 2. that means Oa <= 2.
+//least n - 1 edges to connect the graph, so (n - Oa)/2 + (n - Ob)/2 <= n - 1 -> Oa + Ob <= 2. that means Oa <= 2.
 //We can create a spirale in the graph representation of segments a and b combined by making |b| = |a| - 1. If this
-//model reversed and expanded to the right, we can obtain new types of spirales. So for a = [a1,a2,a3...,an] we can
+//model is reversed and expanded to the right, we can obtain new types of spirales. So for a = [a1,a2,a3...,an] we can
 //make b = [a1-1,a2,a3,...,an+1] to get the connected row of spirales. Segment of the odd length in the middle disconnects
 //the graph, so, using lemma, we can assume the number of such segments <= 2 and we can put them in the start and the end.
 #include <vector>
