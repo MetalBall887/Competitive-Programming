@@ -3,9 +3,10 @@
 #include <string.h>
 #include <cstdlib>
 #include <vector>
-//label[x] - the uninity level of the vertex x. if there is two vertices with same levels and there are some elements
-//bigger their levels, one of them connected these two vertices while constructing the graph. If there is no, these vertices
-//are parent-child, which is prohibited. f[i][j] = 1 when we can't assign vertex i uninity j, because there will
+//label[x] - the uninity level of the vertex x. if there is two vertices with same levels and there are some vertices on the path between 
+//with higher levels, then one of them connected these two vertices while constructing the graph.
+//If there is no, these vertices are parent-child, which is prohibited. because then we linked level k to level k, directly or not
+//f[i][j] = 1 when we can't assign vertex i uninity j, because there
 //is another vertex with uninity j and if connected now, path between them will be wrong (see above).
 //the key is always taking the lowest available number, because taking another one won't optimise the solution in any way
 #include <string>
