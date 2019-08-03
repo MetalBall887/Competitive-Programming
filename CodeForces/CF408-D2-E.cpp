@@ -34,7 +34,7 @@ int main ()
 {
 	cin >> n;
 
-	for (ll i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		scanf ("%lld", &a[i]);
 		sorted[i] = i;
