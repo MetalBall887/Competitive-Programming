@@ -5,6 +5,15 @@
 #include <vector>
 #include <string>
 #include <bitset>
+//f[i][j] - TED of trees where roots are vertex i from T1 and vertex j from T2. Then for these roots we have to match children
+//that way outcoming TED is minimal. Notice that for some price we can take only a subset of children from vertex i by simply
+//removing any other vertices and paying corresponding price. But then might happen that we need to leave a subset of children
+//of vertex j. Then for children that aren't in that subset we can build specific subtrees and will eventually forget about them
+//because their only purpose was to copy these children of j. Now when we can specifically exclude some children from i and j 
+//we can match only some arbitrary number of pairs of children from i and j and remove/copy others, what will lead us to a matching
+//problem. But since for li-th children (from the left) of i and r-ith of j works li-1 < li and ri-1 < ri, so we can apply a
+//O(n^2) dp. The number of operations is O(Σi Σj di*dj) = O(Σi di * (Σj dj)) = O(Σi di * M) = O(NM) where N and M are sizes of
+//T1 and T2.
 #include <math.h>
 #include <queue>
 #include <stack>
