@@ -4,6 +4,15 @@
 #include <cstdlib>
 #include <vector>
 #include <string>
+//Let's represent shifts on x-axis. Original string is 0. Each time we shift to the right, shift representation increases by 1, when to the
+//left, it decreases by 1. Assume after all movements our shift must be equal to x. Now we can check, which bits must be flipped, which mustn't
+//If some bit in s should be flipped, we have to "move" it either to the closest 1 in t on the left or on the right and flip the bit. Now
+//we have to find L and R as the minimal and maximal shift representation so all needed bits will be flipped or, basically, how far will we 
+//shift to the left and to the right. We need to minimise the number of shifts, so we'll either go 0->r->l->d or 0->l->r->d where x->y is
+//is shifting a string from representation x to y. Now we for each l will find such minimal r, that all incorrect bits will be able to meet
+//a 1 in t and be flipped. It will be optimal because with decreasing r (as it is always positive) our number of shifts will always decrease
+//To find this r we can maintain the maximal distance to the closest 1-bit in t on the right for all bits which left-closest bits aren't
+//covered by l; 
 #include <bitset>
 #include <math.h>
 #include <queue>
