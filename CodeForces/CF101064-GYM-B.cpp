@@ -8,7 +8,7 @@
 //First, we can find the number of cases where it will be equal to 3 or 4, then do n! - this number. It doesn't matter
 //if we count the number with LIS or LDS, because those cases are symmetrical.
 //let P be some permutation. Ai will be the set of all increasing subsequences of length i in P. ai is the minimal last
-//number out of all in Ai. if the set is empty ai is 0 So the state d[i][a2][a3][a4] is the number of 
+//number out of all sequences in Ai. if the set is empty ai is 0 So the state d[i][a2][a3][a4] is the number of 
 //permutations of length i with corresponding a2, a3, a4. Notice that a1 is always 1. Transition works like 
 //adding a number x on the end and increasing all numbers >= x by 1 ([2,3,1,5,4] + 3 = [2,4,1,6,5,3]). Now to check how
 //a2,a3,a4 changed, we have to find the minimal a that is larger and replace it with our x. 
