@@ -10,10 +10,11 @@
 //connected in MST at that point. That means, for each point components are fixed no matter how you will reorder the edges.
 //With this, we can for each query stop the Kruskal's cycle at the point where there are edges of the same size in query
 //and move edges from the query to the front (observation 1). From observation 2, no matter how and how many times you 
-//reordered lighter edges, it won't have any impact on existence of MST. So if we put edges with weight x first and one of
-//them can't get in the MST, that means between edes in query with the same weight there is a cycle, so they all can't be the
-//part of the tree. Also, if an edge doesn't connect components then there are already edges that can succesfully replace 
-//this one, so putting this edge to a tree is unoptimal.
+//reordered lighter edges, it won't have any impact on existence of MST. So if we put edges with weight x from query first 
+//and one of them can't get in the MST, that means between edes in query with the same weight there is a cycle, so they all 
+//can't be the part of the tree. Also, if an edge doesn't connect components then there are already edges that can succesfully replace 
+//this one, so putting this edge to a tree is unoptimal. From this, we can break down our task to finding a cycle and checking
+//if all the edges connect some components.
 #include <string>
 #include <bitset>
 #include <math.h>
