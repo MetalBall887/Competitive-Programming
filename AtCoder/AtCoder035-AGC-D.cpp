@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string.h>
 #include <cstdlib>
+//https://img.atcoder.jp/agc035/editorial.pdf
 #include <vector>
 #include <string>
 #include <bitset>
