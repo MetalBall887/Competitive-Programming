@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string.h>
 #include <cstdlib>
+//first of all, s1 != 0 and sn != 1. Next, si = s(n-i). Now, go through the string. suppose we have a root of our unfinished
+//tree x. If si = 0, we hang a new vertex to our root, if si = 1, we create a new root and hang x to it.
 #include <vector>
 #include <string>
 #include <bitset>
