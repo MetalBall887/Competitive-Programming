@@ -3,8 +3,7 @@
 #include <stdio.h>
 //let's pretend we have 1 query. Then it would be convenient to check if the maximal edge is <= x and then do a binary search
 //for this, we can add all edges we have <= x to the DSU and find the sizes of components they are in. If it's >= z, then
-//it's true. For each query then we can' t build DSU logN times but we can save all versions of DSU by persistent array
-//notice, that path compression optimisation works, since we change only last version, which will speed our code up even more
+//it's true. For each query then we can' t build DSU logN times but we can save all versions of DSU in persistent array.
 #include <algorithm>
 #include <cstring>
 #include <cstdlib>
