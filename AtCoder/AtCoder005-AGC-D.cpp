@@ -50,7 +50,6 @@ int main ()
 		f[i] = (i * f[i-1]) % MOD;
 
 	ll ans = 0;
-
 	for (ll i = 0; i <= n; i++)
 	{
 		ll t = f[n-i] * d[cnt-1][i][0] % MOD;
