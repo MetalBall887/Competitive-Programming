@@ -6,13 +6,15 @@
 //same color (in columns j and j+1). That means that (i+1, j) and (i+1, j+1) are already defined: there is only one possible
 //coloring to not to create a bad square. (i+1, j) != (i, j), which means in rectangle on the left there is too only one 
 //coloring: (i+1, j-1) != (i, j-1). Similarly on the other sides, we get the result that with our condition si = not(si+1)
-//For all masks where all neighboring cells (notice that there are only two of them) are different we can match a mask 
-//with the same condition, which means si = si+1 or si = not(si+1). Let's call such masks even. Those are masks of RBRBRB...
-//and BRBRBRBR... dp[i][1] - the number of ways for a histogram  with uneven mask to be colored from the top to row i,
-//dp[i][0] - the same number of ways but for even masks (since for each RB.. mask coloring we can invert all colors and 
-//obtain BR.. mask coloring, we consider those two masks have the same numbers of ways). Here mask is the i-th row of
+//For all masks where all neighboring cells are different (notice that there are only two of them) we can match a mask 
+//without same neighbor cells, which means si = si+1 or si = not(si+1). Let's call such masks even. Those are masks of type
+//RBRBRB... and BRBRBRBR... dp[i][1] - the number of ways for a histogram  with uneven mask to be colored from the top to 
+//row i, dp[i][0] - the same number of ways but for even mask RB* (since for each RB* mask coloring we can invert all colors
+//and obtain BR* mask coloring, we consider those two masks have the same numbers of ways). Here mask is the i-th row of
 //histogram. Scanning line from top is done, adding new columns and merging some histograms in one when they have a common 
-//column. Actualize - function for dp[i][0] to consider the current height of histogram relatively scanning line.
+//column. Actualize - function for dp[i][0] to consider the current height of histogram relatively scanning line. We keep
+//a current set of histograms in DSU. We can merge histograms as shown below: just caseworking. Important note: for histogram
+//of width 1 all masks are even.
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
