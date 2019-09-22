@@ -15,7 +15,7 @@
 //Horizontal division is harder: we should notice that for x-axis borders l and r decreasing l and increasing r won't increase 
 //the dp value (which is, again, maximal right border for a fixed complexity c)). Knowing this, we can for a fixed l and r and div-line x
 //represent the dp value of the upper rectangle as a non-increasing function of x, of the lower one - non-decreasing function of x, so
-//the maximum is the part where they intersect or the closest point to it (we should check both sides). We can keep a pointer
+//the min.max. is the part where they intersect or the closest point to it (we should check both sides). We can keep a pointer
 //to an optimal point while increasing r, since increasing r means just extending the "first" function (for an upper rectangle)
 //and decreasing some of the values of the second fucntion (but never increasing) without losing the 
 //monotonicity, which means "pulling down" the second function, which, again, means moving the optimal point to the right.
