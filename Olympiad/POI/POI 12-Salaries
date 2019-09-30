@@ -2,22 +2,22 @@
 #include <vector>
 #include <stdio.h>
 #include <algorithm>
-//First, consider the graph with all nodes unmarked. We can already say that the root will have the highest salary.
+//First, consider the graph with all salaries undefined. We can already say that the root will have the highest salary.
 //Then, we can assign salaries with, for example, topological ordering. But that means, if there is a subtree with 
-//2+ children, there is more that one topological ordering, which means, the all the salaries inside of this subtree
-//is undefined. So in an empty tree we can define the salary of the root and some lower nodes until there is a node
-//with 2+ children. Now let's return to our original problem where some of the nodes are defined. Let's erase all the
+//2+ children, there is more that one topological ordering, which means, that all of the salaries inside of this subtree
+//are undefined. So in an empty tree we can define the salary of the root and some lower nodes until there is a node
+//with 2+ children. Now let's return to our original problem where some of the nodes are defined. Let's erase all
 //edges that lead to the nodes with specified salary. Now we get a forest of rooted trees (We'll call them T-trees), 
-//for them we can solve those problems inductively.
-//where only the root has a specified salary. Ti will be the i-th T-tree if ordered by increasing the root salary (ai).
-//K is a set of salaries not yet taken. Now for T1 we can define K1 as the set of salaries from K that are lower than a1 and
+//where only the root has a specified salary. For them we can solve this problem inductively. Ti will be the i-th T-tree 
+//if ordered by increasing the root salary (ai).
+//K is a set of salaries not yet taken. Now for T1 we can define K1 as a subset of salaries in K that are lower than a1 and
 //thus can be used in T1. Note that we can take any |T1| salaries from K1, since it is always possible for them to fill
-//the vacant places in T1 (but not to forget that we can determine uniquely only the highest path nodes as was told above)
+//the vacant places in T1 (but don't forget that we can determine uniquely only the highest path nodes as was told above)
 //and also all elements that fit into K1 will fit into any Ki so it also doesn't matter which elements we leave in K.
-//So we can greedily pick any |T1| from K1. When |K1|=|T1|, there is only one way to choose the salaries but when
-//|K1| > |T1| we can't uniquely determine salaries in T1, neither we can't determine which elements from K1 are left, so
-//all nodes which salaries are from K1 (it can be not just T1, but T2 and else, depending on how big K1 is) remain undefined.
-//After we assigned nodes for T1, we assume it processed and remove, now the old T2 is our new T1. DO the same thing by 
+//So we can greedily pick any |T1| salaries from K1. When |K1|=|T1|, there is only one way to choose the salaries but when
+//|K1| > |T1| we can't uniquely determine salaries in T1, neither we can determine which elements from K1 are left in K, so
+//all nodes with salaries from K1 (they can be not just from T1, but T2 and else, depending on how big K1 is) remain undefined.
+//After we assigned nodes for T1, we consider it processed and remove, now the old T2 is our new T1. Do the same thing by 
 //inducktion.
 #include <cstring>
 #include <cstdlib>
