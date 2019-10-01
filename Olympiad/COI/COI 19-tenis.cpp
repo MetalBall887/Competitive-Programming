@@ -5,19 +5,19 @@
 //First, let's build a graph, where there is a path x -> y if player x can beat player y. Now find strongly connected
 //components and conduct them into vertices to obtain DAG. Since between each pair there is either a path x -> y or y -> x,
 //we have only one SCC that can't be beaten by player in other SCCs (basically, a "source" of DAG). Let's call the set of the
-//players inside "dominant set". A player can win if and only if he is in a dominant set (if he's not in dominant set, 
+//players inside it "dominant set". A player can win if and only if he is in a dominant set (if he's not in dominant set, 
 //he can't beat anyone from this set). Now how to quickly find the set? Let's consider M(p) - the maximal rank from all 
 //courts for player p. If M(x) < M(y), x can beat y. So if we sort all players by M(p) increasing, our graph will be 
 //simplified to the directed path + some back edges. Let's numerate players from now by the direct order of this path.
 //The vertex 0 is in the dominant set, because we reach all other players by path edges. If y is in the dominant set,
 //all 0 <= x < y are there, because there is a path 0 -> x -> y and 0 and y are in the set. So the set on this new graph
 //will be the prefix of the "main" M(x) path. When can we say that the players from the prefix [0..x-1] can't be beaten
-//by all other players? It should contain all first x ranks from all surfaces, because if some rank r 1 <= r <= x for a 
-//surface is not there, there is a rank lower instead and the missing rank can be used against the player in prefix with the 
-//lowest rank. So if in our prefix any player has M(k) > x, that means the there is < x players with rank for some surface
-//<= x, so some rank is missing. The set is dominant if for size x the maximal rank for each player in the set <= x.
-//But beware of sets that are obtained by merging some adjacent SCCs. It may be unbeatable, but the set is not dominant, so
-//for the version with one SCC we go for a minimal prefix. We can keep in t[x] x - (the number of players with maximal rank 
+//by all other players? Prefix should contain all first x ranks from all courts, because if some rank r 1 <= r <= x for a 
+//court is not there, this missing rank can be used against the player in prefix with the lowest rank on this  court. 
+//So if in our prefix any player has M(k) > x, that means for some court the there is < x players with rank <= x, so some 
+//high rank is missing. The set of size x is dominant if the maximal rank for each player in the set is <= x.
+//But beware of sets that are obtained by merging some adjacent SCCs. They may be unbeatable, but are not dominant, so to get
+//the version with one SCC we go for a minimal prefix. We can keep in t[x] = x - (the number of players with maximal rank 
 // <= x) and then search a leftmost 0 with parallel binsearch in O(N + QlogN).
 #include <cstring>
 #include <cstdlib>
