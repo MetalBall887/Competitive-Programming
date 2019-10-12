@@ -3,18 +3,18 @@
 #include <stdio.h>
 #include <algorithm>
 #include <set>
-//Let's call a range between two same numbers segments (for numbers i segment will be i-th)
-//First we have to notice that if no segments lie inside another one, for each two segments we can process them in any order
-//(converging a segment) and all orders will be optimal. For segments, one of them lie in another, it's better to first
+//Let's call a range between two same numbers a segment (for numbers i segment will be i-th)
+//First we have to notice that if no segments lie inside another one, we can process each two segments in any order
+//and all orders will be optimal. For segments, when one of them lie in another, it's better to first
 //converge a smaller segment. The greedy idea is to always pick segments that have no other segments inside. If we call
 //the number of segments inside rank, we can sort segments by their ranks and process in that order, because all segments
-//inside segment a will have lower ranks than a-th rank so will be processed sooner. The hardest part is indices. We can 
-//know them by explicitly constructing every swap operation, for example, on linked list. One hard part is, segment
-//may converge not only after some another converging but in its process which pretty much makes the task more difficult.
-//To deal with this case I use variable cur_deleted to remember how many segments were deleted during our converging
-//and substract 2 from pos_l each time segment is deleted. We calculae first pos_l and pos_r by their original position
-//minus all elements deleted before this operation. Until we start moving one of the elements, it's a correct way but
-//then we lose track on the place where left element would be in original state of array.
+//inside segment A will have lower ranks than A-th rank so A will be processed later. The hardest part is indices. We can 
+//get them by explicitly constructing every swap operation, for example, on linked list. One hard part is, segment
+//may converge not only after some another convergence but in its process which pretty much makes the task more difficult.
+//To deal with this case I use variable cur_deleted to remember how many segments were deleted during our convergence
+//and substract 2 from pos_l each time segment is deleted. We calculate first pos_l and pos_r by their original positions
+//minus all elements at the left deleted before this operation. Until we start moving one of the elements, it's a correct 
+//way but then we lose track on the place where left element should be in original state of array.
 #include <cstring>
 #include <assert.h>
 #include <cstdlib>
