@@ -2,7 +2,6 @@
 #include <vector>
 #include <stdio.h>
 #include <algorithm>
-#include <fstream>
 #include <set>
 //Let's first count the number of different tables. In each hand there might be 8 cards with ranks 0-4. Order doesn't matter
 //so for each rank we keep the number of cards in hand with such rank. Each array of size 5 and sum 8 fits. It is C[13][8]
