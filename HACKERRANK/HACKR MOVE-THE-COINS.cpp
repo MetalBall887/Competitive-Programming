@@ -3,16 +3,16 @@
 #include <stdio.h>
 #include <algorithm>
 //h[i] - distance from i to root. Notice that if h[i] is odd, there should be a parent above i. That
-//means, if coins go from the node with event dist, this turn can be "parried" and sent upwards again.
-//That means, if the player with initiative wants, he can ignore all values on nodes with even height
+//means, if coins go from the node with even dist, this turn can be "parried" and coins sent upwards again.
+//That means, if the player with initiative wants, he can ignore all values in nodes with even height
 //and if he pushes coins from the node with odd height, he doesn't expect them to return (again,
 //if they return, he spends one turn to push them to parent and since he can always do it, it will always be 
 //basically cancelling the last turn with his turn). Now, since they never return, we can look at this problem
 //as a nim, where heaps are only in odd heighted nodes. If first player is in winning position of this nim, 
-//he will keep it. If he is not, every his move is adding or distracting non-zero to any heap of this nim, that 
-//leads to winning position. Now how to process queries: check is it is valid by parenthesis check and
+//he will do a strategy above. If he is not, every his move is adding or distracting non-zero to any heap of this nim, that 
+//leads to winning position. Now how to process queries: check if it is valid by parenthesis check and
 //notice that the xor of odd-height nodes will be swapped with the xor of even-height nodes if the root of subtree
-//chenges the parity of its height.
+//changes the parity of its height.
 #include <fstream>
 #include <set>
 #include <cstring>
