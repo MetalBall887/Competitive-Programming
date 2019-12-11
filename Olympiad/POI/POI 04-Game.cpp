@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <algorithm>
 #include <fstream>
-//First of all, let's decide if we can win at all. This problem is a typical staircase nim one. If we take all vacant spots
+//First of all, let's decide if we can win at all. This problem is a typical staircase nim. If we take all vacant spots
 //as borders of heaps, all pawns that go after each other will get into one heap, and from each heap an arbitrary number
 //of pawns can be moved forward. We're losing as soon as we put any pawn on the cell before the last, giving our opponent
 //a chance to win. So, as long as we don't have other moves, we simply do not do that because everything is more optimal
 //than letting your opponent win in one move. Now it sounds like staircase nim. After we solve it, we should find the number
-//of moves that lead to the losing position. Here we can try every non-empty heap and do some caseworking with the idea of:
-//if we can delete/add to the valid nim heap, try to find the value we should add/delete so that overall xor will be 0 and
-//chack if we can do this.
+//of moves that lead to the losing position. Here we can try moving from every non-empty heap and do some caseworking with 
+//the idea of: if we can delete/add to the valid nim heap, try to find the value we should add/delete so that overall xor 
+//will be 0 and check if we can do this.
 #include <map>
 #include <memory>
 #include <unordered_map>
