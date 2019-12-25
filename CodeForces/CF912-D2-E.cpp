@@ -2,7 +2,8 @@
 #include <ext/pb_ds/assoc_container.hpp>
 //We can binary search the answer. Here we will use meet-in-the-middle technique to reduce the number of elements we traverse
 //Divide our set of primes into two roughly equal subsets, generate all numbers for both of them independently, sort
-//then you can find out the number of products of pairs from both generated sequences with two pointers method.
+//then you can find out the number of products of pairs from both generated sequences less than or equal to some k
+//with two pointers method.
  
 using namespace std;
  
