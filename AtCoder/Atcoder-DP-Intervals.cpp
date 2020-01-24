@@ -3,10 +3,9 @@
 #define N 1000000
 //d[i] - the maximal score obtained if the last 1 was put in position i. In this position we are looking for the optimal place
 //for our second last 1 d[j] + (sc_i = the sum of scores of all segments that appear in position i) - (sc_ij = the sum of
-//scores of all segments going through both i and j to avoid double-counting). di = sc_i = max(dj + sc_ij for all 0 <= j < i).
-//We can contain dj + sc_ij by keeping all segments going through i in a segment tree and adding/removing them from the
-//initial segment tree, where there are only djs, by range updates. Finding maximal in prefix can be done by the same segment
-//tree
+//scores of all segments going through both i and j to avoid double-counting). di = sc_i + max(dj + sc_ij for all 0 <= j < i).
+//We can contain dj + sc_ij by keeping all segments going through i in a segment tree, where there are only values d[i] and 
+//adding/removing them from it, by range updates. Finding maximal in prefix can be done by the same segment tree
  
 using namespace std;
  
