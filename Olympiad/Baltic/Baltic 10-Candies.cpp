@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
-//First of all, we can observe that after each addition in a knapsack problem the number of achieved values can increase almost
-//twice. Also by setting this value large enough, we can increase it exactly twice. That means, we should for each candie box
-//consider the number of candies achievable by other boxes * 2. For those reasons we need a knapsack dp table, with which we'll
-//be able to perform rollbacks. For that, we can keep the number of of ways to achieve this sum modulo some big prime. As
+//First of all, we can observe that after each addition in a knapsack problem the number of achieved values can increase at 
+//most twice. Also by setting this value large enough, we can increase it exactly twice. That means, we should for each candie 
+//box consider the number of candies achievable by other boxes * 2. For those reasons we need a knapsack dp table, with which 
+//we'll be able to perform rollbacks. For that, we can keep the number of of ways to achieve this sum modulo some big prime. As
 //we know, dp[i+1][j] = dp[i][j] + dp[i][j-x], so, in order to find dp[i] out of dp[i+1], dp[i][j] = dp[i+1][j] - dp[i][j-x].
 //If the modulo is 0, there is a high probability the actual value is 0 as well. That way we found needed box to be changed
 //but didn't find the minimal new value. For this, we need to find the first value that isn't a difference of two achievable
