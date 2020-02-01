@@ -6,7 +6,7 @@
 //of gloves we can this set from: [the size of the set; the sum of numbers of gloves colored in one of the set colors].
 //That way we have 2^n ranges and we can do a scanning line on these ranges and for each starting/after ending state (it's
 //not optimal to consider others because we don't change the set of colors but only increase the number of gloves taken)
-//from all possible color sets consider the worst. We can keep the color set by a segment tree.
+//from all possible color sets consider the worst. We can keep the all possible colorsets in a segment tree.
  
 #define N 1000001
  
