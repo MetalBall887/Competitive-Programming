@@ -6,7 +6,7 @@
 //can uniquely determine a, b, c. After this, start eliminating from the start. Let's say, you eliminated all pairwise sums
 //where maximal component is < x and you know all of the elements from a to x not including x. You know the smallest in
 //remaining pairs will be a + x. Determine x, delete a + x, b + x, ... w + x from the set of pairwise sums. Implementing it
-//with additional constant factor may be slow, so you can optimise it by using a queue instead.
+//with additional logarithmic factor may be slow, so you can optimise it by using a queue instead.
 
 using namespace __gnu_pbds;
  
