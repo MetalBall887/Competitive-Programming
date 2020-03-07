@@ -2,9 +2,9 @@
 #include <ext/pb_ds/assoc_container.hpp>
 //Finding distance between two points is just caseworking. Since an obelisk only falls down the graph is DAG so we can use
 //dynamic programming. d[i][j] - the shortest path from the start to the j-th hole on i-th level. By calculating the distance
-//between two points we can kiss the case where the ibelisk falls down in the middle of this path but this is ok because that
-//means there is a prefix of this path that in the same number of moves will push you lower by at least one floor, so the edge
-//we use now has the alternative, probably even more optimal one
+//between two points we can miss the case where the obelisk falls down in the middle of this path but this does not influence 
+//the shortest path because that means there is a prefix of this path that in the same number of moves will push you lower by 
+//at least one floor, so the edge we use now has the alternative, probably even more optimal one
 
 using namespace __gnu_pbds;
 
