@@ -5,13 +5,13 @@
 //the set of points will always form a convex polygon. Now let's transform it to the problem that is more comfortable to 
 //solve with this solution: find such set of points that the convex hull has the maximum value 
 //111*(# of trees inside of the hull) - 20*(# of points in the set). Break the convex hull down into the leftmost point, 
-//the rightmost point, the upper hull and the lower hull. d_up[i][j] - the 111#of trees - 20#of points if counting all trees
-//below the upper hull and the leftmost and rightmost points are h[i] and h[j]. Similarly, d_down[i][j] but the lower hull and
-//for trees strictly above it. What will happen if we add those two values: the upper and lower hulls will form a convex hull
-//and each tree is either above the lower hull, below the upper hull or both, which means every tree horizontally corresponding
-//to the polygon is counted, if the tree is inside, it's counted twice. Now we can subtract the number of all trees in the 
-//horizontal range between h[i] and h[j] and get the answer. We can transit from states to states as usually in 2d range dp in
-//O(n). Overall complexity is O(n^3).
+//the rightmost point, the upper hull and the lower hull. d_up[i][j] - the maximum 111#of trees - 20#of points if counting 
+//all trees directly below the upper hull and the leftmost and rightmost points are h[i] and h[j]. Similarly, d_down[i][j] 
+//but the lower hull and for trees strictly above it. What will happen if we add those two values: the upper and lower hulls 
+//will form a convex hull and each tree is either above the lower hull, below the upper hull or both, which means every tree 
+//horizontally corresponding to the polygon is counted, if the tree is inside, it's counted twice. Now we can subtract the 
+//number of all trees in the horizontal range between h[i] and h[j] and get the answer. We can transit from states to states 
+//as usually in 2d range dp in O(n). Overall complexity is O(n^3).
 
 using namespace __gnu_pbds;
 
