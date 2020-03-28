@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 //K = 1 is a classical problem, where we can view each segment as a function f_k(x) that returns the length of the path between
-//work and home. when x < l_k the derivative of this function is -1, when l_k <= x < r_k, it's 0, when r_k <= x, it's 1. The
-//derivative of the sum over all f_i(x) will be the ((#endpoints <= x)  - (#endpoints > x)) / 2. So the minimum is when it's
-//0 -> is on the median.
+//work and home if the bridge is at x. when x < l_k the derivative of this function is -1, when l_k <= x < r_k, it's 0, when
+//r_k <= x, it's 1. The derivative of the sum over all f_i(x) will be the ((#endpoints <= x)  - (#endpoints > x)) / 2. So the 
+//minimum is when it's 0 -> is on the median.
 //Let's say S1 and S2 are sets of people for which the first or the second bridge is closer correspondingly, F1(S) - the 
 //answer for the set of segments S with one bridge (which is computed just like above), F2(S) - the same with two bridges.
 //For K = 2 the second observation is, it's enough for every person to choose the bridge the middle between his path from 
