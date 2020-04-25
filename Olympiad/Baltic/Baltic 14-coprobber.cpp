@@ -37,6 +37,7 @@ int start (int v, bool A[][500]) {
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < n; j++)
 			sm[i] += (int) A[i][j];
+	
 	memcpy (a, A, sizeof (a));
  
 	for (int i = 0; i < n; i++)
