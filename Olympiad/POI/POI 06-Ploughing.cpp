@@ -1,17 +1,16 @@
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
-//Let's assume some part of our field is already ploughed. Notice tha there can't be vertical stripes above the unploughed
+//Let's assume some part of our field is already ploughed. Notice that there can't be vertical stripes above the unploughed
 //rectangle and the same holds for each direction. That particularly means that for the last stripe there will be only stripes
-//of the same orientation from both sides -> after ploughing there will be either m vertical stripes of n horizontal stripes.
+//of the same orientation from both sides -> after ploughing there will be either m vertical stripes or n horizontal stripes.
 //Now assume we have m vertical stripes. Let's try to plough the field. We know that there will be vertical stripes on each
-//column, so if we can plough vertically, we do it. If we can', we have to decide either we plough the top or the bottom.
+//column, so if we can plough vertically, we do it. If we can't, we have to decide either we plough the top or the bottom.
 //It's actually a hard choice that will lead us to slow solutions, so instead we will limit the number of ploughs above and
-//below, so let check (lo, hi) be True iff it's possible to plough the field with using at most lo lower ploughs and at most
-//hi higher ploughs. Now, since we can't really "skip" rows (so if we take hi higher stripes, we will take the highest ones), 
-//so if it's not possible to add vertical stripes, we can add horizontal stripes greedily. Now let's notice that if 
-//check (lo, hi) is true, check (lo + 1, hi) and check (lo, hi + 1) are also true, so if f(x) is the smallest number such that
-//check (x, f(x)) is true, the minimum will be m + x + f(x) for some x. To calculate f(x) for each x, note that f(x+1)<=f(x),
-//so we can use two pointers method
+//below, so let check(lo, hi) be True iff it's possible to plough the field with using at most lo lower ploughs and at most
+//hi higher ploughs. Now, since we can't really "skip" rows (if we take hi higher stripes, we will take them from rows [1;hi]), 
+//if it's not possible to add vertical stripes, we can add horizontal stripes greedily. If f(x) is the smallest number such 
+//that check (x, f(x)) is true, the minimum will be m + x + f(x) for some x. To calculate f(x) for each x, note that 
+//f(x+1)<=f(x), so we can use two pointers method.
 
 using namespace __gnu_pbds;
  
