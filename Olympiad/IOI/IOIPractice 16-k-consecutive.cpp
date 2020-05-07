@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 //For each k-consecutive permutation there is a unique minimal partition into consecutive subarrays such that if we order
-//these substrings lexicographically, no two adjacent substrings will be "near" in lexicographic order. For example, 
+//these subarrays lexicographically, no two adjacent subarrays will be "near" in lexicographic order. For example, 
 //for 1 7 5 6 2 3 4 that will be (1) (7) (5 6) (2 3 4). So for each partition with all subarrays not longer than k we can 
 //count the number of permutations of these subarrays to get the number of k-consecutive permutations. To find the number of
 //partitions we use the dp table f[i][j] - the number of partitions for i elements into j subarrays, where each subarray is 
@@ -9,10 +9,10 @@
 //So for each such partition of size i we want to solve the problem for k = 1. Let's call an adjacent pair in permutation bad
 //if their values differ by one and the second value is bigger. d[i][j] - the number of permutations of i elements with j
 //bad pairs. Let's say if we append a value x to permutation, all values >= x before will be increased by one. That means,
-//for each bad pair (i, i+1) we can take x = i and break down the pair (notice that the pairs don't intersect and we can 
-//break down at most one pair), we can take the last value + 1 (we don't break down a bad pair with that, only creating a new 
-//one) and other choices don't change the number of pairs. So the recursion will be d[i][j] = (j+1)d[i-1][j+1](j+1 ways to 
-//choose a bad pair to break) + d[i-1][j-1] (create a pair) + (i - j - 1)*d[i-1][j](other options).
+//for each bad pair (i, i+1) we can take x = i+1 and break down the pair (notice that we can break down at most one pair), 
+//we can take the last value + 1 (we don't break down a bad pair with that, only creating a new one) and other choices 
+//don't change the number of pairs. So the recursion will be d[i][j] = (j+1)d[i-1][j+1](j+1 ways to choose a bad pair to 
+//break) + d[i-1][j-1] (create a pair) + (i - j - 1)*d[i-1][j](other options).
  
 using namespace __gnu_pbds;
  
