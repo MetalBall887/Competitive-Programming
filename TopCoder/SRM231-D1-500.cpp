@@ -2,7 +2,7 @@
 #include <ext/pb_ds/assoc_container.hpp>
 //Mainly is done by logaritmization by the fact  that log n! = log 1 + log 2 + ... + log n. Knowing log n! it's not hard to count combinations logaritmized
 //and the whole formula
- 
+
 using namespace __gnu_pbds;
  
 #define N 2000003
