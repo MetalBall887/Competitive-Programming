@@ -26,7 +26,7 @@ typedef long double ld;
  
 const ll INF = 1e18, MOD = 1e9 + 7, MOD2 = 1e6 + 3;
  
-ll d[10001][10003], n, P, offset = 3000;
+ll d[10001][10005], n, P, offset = 3000;
  
 int main () {
 	cin >> n >> P;
