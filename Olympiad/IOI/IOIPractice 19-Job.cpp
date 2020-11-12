@@ -6,7 +6,7 @@
 //the corollary is, if there is a job with the highest ui/di, it's always optimal to do it first. Now with the tree condition: if x is the job with the highest
 //ui/di, then, once its parent will be done, it will be optimal to do this job immediately, so this job is done right after its parent and we can "merge" these
 //two jobs. u of new job is u1+u2, d is d1+d2, except when we need the cost to do this job alone will not be (u1+u2)*(d1+d2) but u1*d1 + u2*(d1+d2), so we need to
-//subtract u2*d1 beforehand
+//subtract u2*d1 beforehand. If the global maximum job does not have a parent, consider it the next one to do. Continue while you have jobs.
  
 using namespace __gnu_pbds;
  
